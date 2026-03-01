@@ -19,7 +19,6 @@ body {
     color: white;
     display: flex;
     justify-content: center;
-    align-items: center;
     height: 100vh;
     margin: 0;
     text-align: center;
@@ -33,6 +32,7 @@ body {
     border-radius: 20px;
     box-shadow: 0 20px 50px rgba(0,0,0,0.5);
     width: 350px;
+  margin-bottom: 90px;
 }
 
 .input-container {
@@ -58,10 +58,18 @@ body {
     right: 15px;
     top: 50%;
     transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
     cursor: pointer;
-    font-size: 20px;
+    color: var(--neon-green);
+    opacity: 0.7;
+    transition: 0.3s;
 }
 
+.eye:hover {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.1);
+}
 .cyber-btn {
     width: 100%;
     padding: 12px;
@@ -73,6 +81,8 @@ body {
     cursor: pointer;
     transition: 0.3s;
     margin-bottom: 15px;
+    letter-spacing: 1px;
+
 }
 
 .cyber-btn:hover {
@@ -114,17 +124,109 @@ body {
     margin-top: 10px;
     font-weight: bold;
 }
+.subtitle {
+  font-size: 14px;
+  opacity: 0.7;
+  margin-top: 5px;
+   color: rgba(0, 255, 153, 0.8);
+   letter-spacing: 0.5px;
+
+}
+.title {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.title span {
+  font-weight: 300;
+  opacity: 0.7;
+  margin-left: 6px;
+}
+.under-note {
+  font-size: 13px;
+  opacity: 0.7;
+  margin-top: 12px;
+  text-align: center;
+  color: rgba(0, 255, 153, 0.8);
+   letter-spacing: 0.5px;
+}
+.guidelines {
+  margin-top: 40px;
+  text-align: left;
+}
+
+.guide-section {
+  margin-bottom: 30px;
+  padding: 15px;
+  border-left: 3px solid var(--neon-green);
+  background: rgba(0,0,0,0.2);
+  border-radius: 8px;
+}
+
+.guide-section h3 {
+  margin-bottom: 10px;
+  color: var(--neon-green);
+}
+
+.guide-section h4 {
+  margin-bottom: 8px;
+  color: var(--neon-green);
+}
+
+.guide-section p {
+  font-size: 13px;
+  opacity: 0.8;
+  line-height: 1.5;
+}
+
+.dont {
+  color: var(--neon-red);
+  margin-top: 6px;
+}
+
+.do {
+  color: var(--neon-green);
+}.reveal {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.6s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+.guidelines {
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
 </style>
 </head>
 
 <body>
 
 <div class="lab-card">
-<h2>PASSWORDS-CHECKER</h2>
+<h2 class="title">STRENGTH<span>CHECKER</span></h2>
+<p class="subtitle">Check how strong your password really is!!!</p>
 
 <div class="input-container">
-    <input type="password" id="password" placeholder="enter a password">
-    <span class="eye" id="eyeBtn">👁️</span>
+    <input type="password" id="password" placeholder="Enter a password">
+    <span class="eye" id="eyeBtn">
+  <svg id="eyeOpen" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+  </svg>
+
+  <svg id="eyeClosed" style="display:none;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+    d="M3 3l18 18M10.5 10.5l3 3M9.88 5.88A9.956 9.956 0 0112 5c4.478 0 8.268 2.943 9.542 7a10.02 10.02 0 01-3.16 4.9M6.22 6.22A9.956 9.956 0 002.458 12C3.732 7.943 7.523 5 12 5c1.5 0 2.93.33 4.22.92" />
+  </svg>
+</span>
 </div>
 
 <!-- CHECK BUTTON -->
@@ -132,6 +234,9 @@ body {
 style="opacity:0; pointer-events:none; transition:0.3s;">
 CHECK PASSWORD
 </button>
+<p class="under-note">
+  We do not collect or store the passwords entered here
+</p>
 
 <div class="stats-grid">
     <div class="stat-box">
@@ -151,8 +256,60 @@ CHECK PASSWORD
 <div id="message">NO DATA</div>
 
 <button class="cyber-btn" id="generateBtn">
-GENERATE STRONG KEY
+CREATE STRONG PASSWORD
 </button>
+<div class="guidelines">
+
+  <div class="guide-section reveal">
+    <h3>Passwords Strength Best Practices</h3>
+  </div>
+
+  <div class="guide-section reveal">
+    <h4>Make It Unique</h4>
+    <p>
+      Use passwords unique to different online accounts. This reduces the likelihood
+      that one compromised password would impact the security of your other accounts.
+    </p>
+
+    <p class="dont">❌ Don't use the same password for every account.</p>
+    <p class="do">✅ Do use passwords unique to every account.</p>
+  </div>
+
+  <div class="guide-section reveal">
+    <h4>Make It Random</h4>
+    <p>
+      Ensure your passwords do not follow a recognizable pattern and have a combination
+      of uppercase and lowercase letters, numbers, special characters, or words unrelated
+      to your personal information.
+    </p>
+
+    <p class="dont">
+      ❌ Don't use passwords with anything related to your personal information.
+    </p>
+
+    <p class="do">
+      ✅ Do use random combinations of uppercase and lowercase letters, numbers,
+      special characters, and unrelated words.
+    </p>
+  </div>
+
+  <div class="guide-section reveal">
+    <h4>Make It Long</h4>
+    <p>
+      Using long passwords is critical to password strength. An 8-character password
+      can be cracked quickly, while a 16-character password is extremely harder to break.
+    </p>
+
+    <p class="dont">
+      ❌ Don't use passwords with fewer than 14 characters.
+    </p>
+
+    <p class="do">
+      ✅ Do use long passwords consisting of 14 characters or more.
+    </p>
+  </div>
+
+</div>
 </div>
 
 <script type="module">
@@ -305,10 +462,35 @@ function animatePassword(text) {
 
 
 function togglePassword() {
-    passwordInput.type =
-        passwordInput.type === "password" ? "text" : "password";
+    const eyeOpen = document.getElementById("eyeOpen");
+    const eyeClosed = document.getElementById("eyeClosed");
+
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        eyeOpen.style.display = "none";
+        eyeClosed.style.display = "block";
+    } else {
+        passwordInput.type = "password";
+        eyeOpen.style.display = "block";
+        eyeClosed.style.display = "none";
+    }
 }
 
+function revealOnScroll() {
+  const elements = document.querySelectorAll(".reveal");
+
+  elements.forEach(el => {
+    const windowHeight = window.innerHeight;
+    const elementTop = el.getBoundingClientRect().top;
+
+    if (elementTop < windowHeight - 80) {
+      el.classList.add("active");
+    }
+  });
+}
+
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
 </script>
 
 </body>
